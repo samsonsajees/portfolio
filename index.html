@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samson Saji - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #ccd6f6;
+        }
+        .glass-effect {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .section-title {
+            color: #64ffda;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+        .skill-badge {
+            background-color: #112240;
+            color: #64ffda;
+        }
+        .fade-in, .fade-in-load {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #64ffda;
+            border: 2px solid #0a192f;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Samson Saji</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:text-green-300 transition duration-300">About</a>
+                <a href="#projects" class="hover:text-green-300 transition duration-300">Projects</a>
+                <a href="#skills" class="hover:text-green-300 transition duration-300">Skills</a>
+                <a href="#certifications" class="hover:text-green-300 transition duration-300">Certifications</a>
+                <a href="#contact" class="hover:text-green-300 transition duration-300">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="#about" class="block py-2 hover:text-green-300 transition duration-300">About</a>
+             <a href="#projects" class="block py-2 hover:text-green-300 transition duration-300">Projects</a>
+             <a href="#skills" class="block py-2 hover:text-green-300 transition duration-300">Skills</a>
+             <a href="#certifications" class="block py-2 hover:text-green-300 transition duration-300">Certifications</a>
+             <a href="#contact" class="block py-2 hover:text-green-300 transition duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24">
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center items-start text-left">
+            <div class="relative z-10">
+                <p class="text-lg text-green-300 mb-2 fade-in-load">Hi, my name is</p>
+                <h1 class="text-4xl md:text-7xl font-bold text-white mb-4 fade-in-load" style="--delay: 100ms;">Samson Saji.</h1>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-400 mb-6 fade-in-load" style="--delay: 200ms;">B-Tech in Computer Science & Engineering.</h2>
+                <p class="max-w-xl text-gray-300 mb-8 fade-in-load" style="--delay: 300ms;">
+                    I'm a passionate student with hands-on experience in full-stack development, IoT, and AI. I build scalable, connected systems and enjoy bringing ideas to life.
+                </p>
+                <a href="#projects" class="bg-green-500 text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-green-400 transition duration-300 fade-in-load" style="--delay: 400ms;">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <h2 class="text-3xl font-bold mb-8 text-center section-title fade-in">About Me</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3 fade-in">
+                    <p class="text-lg mb-4">
+                        A B.Tech Computer Science student with hands-on experience in Java, C, full stack Flutter application development, Embedded systems (ESP32) based loT solutions, and AI integration. 
+                    </p>
+                    <p class="text-lg">
+                        I am passionate about building scalable, connected systems and eager to contribute to enterprise mobility and smart device projects in a tech-driven team. I thrive in collaborative environments and I'm always looking for opportunities to learn and grow. My goal is to leverage my skills in software and hardware to create innovative solutions that have a real-world impact.
+                    </p>
+                </div>
+                <div class="md:col-span-2 flex justify-center fade-in">
+                    <div class="w-64 h-64 rounded-full bg-green-500 flex items-center justify-center overflow-hidden border-4 border-green-400">
+                        <img src="https://placehold.co/256x256/0a192f/64ffda?text=SS" alt="Samson Saji" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title fade-in">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card glass-effect p-8 rounded-lg flex flex-col justify-between fade-in">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Eldernex (Ongoing)</h3>
+                        <p class="text-gray-400 mb-4">A cross-platform Flutter app for elderly users to connect with wearable devices via Bluetooth, tracking health details and falls. It sends real-time notifications and alerts to a caregiver's device.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Flutter</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">ESP32-S3</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Firebase</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Google Cloud</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="https://github.com/samsonsajees/Eldernex" target="_blank" class="text-green-300 hover:text-white transition duration-300 font-semibold inline-flex items-center">
+                            View on GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card glass-effect p-8 rounded-lg flex flex-col justify-between fade-in">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Melanoma Detection using Deep Learning</h3>
+                        <p class="text-gray-400 mb-4">Trained a SEResNeXt50 deep learning model for skin lesion classification on the HAM10000 dataset. Implemented advanced augmentation, cross-validation, and class weights for mobile inference.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">TensorFlow/Keras</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Deep Learning</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">TFLite</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="https://github.com/samsonsajees/Melanoma-detection-using-Deep-Learning" target="_blank" class="text-green-300 hover:text-white transition duration-300 font-semibold inline-flex items-center">
+                            View on GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Education Section -->
+        <section id="skills" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title fade-in">Skills & Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Technical Skills -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Technical Skills</h3>
+                    <div class="space-y-4">
+                        <div><p class="font-medium">Java</p><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="bg-green-500 h-2.5 rounded-full" style="width: 85%"></div></div></div>
+                        <div><p class="font-medium">C</p><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="bg-green-500 h-2.5 rounded-full" style="width: 80%"></div></div></div>
+                        <div><p class="font-medium">Flutter</p><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="bg-green-500 h-2.5 rounded-full" style="width: 70%"></div></div></div>
+                        <div><p class="font-medium">Python</p><div class="w-full bg-gray-700 rounded-full h-2.5"><div class="bg-green-500 h-2.5 rounded-full" style="width: 75%"></div></div></div>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mt-10 mb-6">Tools & Platforms</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-badge px-4 py-2 rounded-md">ESP32</span><span class="skill-badge px-4 py-2 rounded-md">Arduino</span><span class="skill-badge px-4 py-2 rounded-md">Machine Learning</span><span class="skill-badge px-4 py-2 rounded-md">Android Studio</span><span class="skill-badge px-4 py-2 rounded-md">Git</span><span class="skill-badge px-4 py-2 rounded-md">Linux & Windows</span>
+                    </div>
+                </div>
+                <!-- Education -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Education</h3>
+                    <div class="space-y-6 border-l-2 border-green-500 pl-8">
+                        <div class="relative timeline-item"><p class="font-bold">B-Tech in Computer Science & Engineering</p><p class="text-sm text-gray-400">Sahrdaya College of Engineering And Technology</p><p class="text-sm text-gray-400">2022 - 2026 | CGPA: 7.53</p></div>
+                        <div class="relative timeline-item"><p class="font-bold">Higher Secondary Education</p><p class="text-sm text-gray-400">Christ Vidyanikethan</p><p class="text-sm text-gray-400">2020 - 2022 | GPA: 84.8%</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications & Activities Section -->
+        <section id="certifications" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title fade-in">Certifications & Activities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Certifications</h3>
+                    <ul class="space-y-4 list-disc list-inside text-gray-300">
+                        <li>App Development using Flutter - GenZee Technologies</li>
+                        <li>Machine Learning - Internshala Trainings</li>
+                        <li>Getting Started with Artificial Intelligence - IBM</li>
+                    </ul>
+                </div>
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Extra Curricular Activities</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-white">IEEE Student Branch - Technical Team Member</h4>
+                            <p class="text-gray-400">Actively contributed to various IEEE technical projects and workshops, collaborating with peers to build and demonstrate innovative tech solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 text-center">
+            <h2 class="text-3xl font-bold mb-4 section-title fade-in">Get In Touch</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-8 fade-in">
+                I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out. My inbox is always open!
+            </p>
+            <a href="mailto:samsonsajees@gmail.com" class="inline-block bg-transparent border-2 border-green-500 text-green-500 font-bold py-3 px-8 rounded-lg hover:bg-green-500 hover:text-gray-900 transition duration-300 fade-in">
+                Say Hello
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+             <a href="https://github.com/samsonsajees" target="_blank" class="text-gray-400 hover:text-green-300 transition duration-300">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/samson-saji" target="_blank" class="text-gray-400 hover:text-green-300 transition duration-300">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+            </a>
+        </div>
+        <p class="text-gray-500">&copy; 2024 Samson Saji. Designed & Built with ❤️.</p>
+    </footer>
+
+    <script>
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Smooth Scrolling ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if(mobileMenu.classList.contains('hidden') === false){
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // --- 3D Background Animation ---
+        let scene, camera, renderer, stars;
+
+        function init3D() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 1;
+            camera.rotation.x = Math.PI / 2;
+
+            renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('bg-canvas'),
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const starGeo = new THREE.BufferGeometry();
+            const starCount = 6000;
+            const posArray = new Float32Array(starCount * 3);
+            for (let i = 0; i < starCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 500;
+            }
+            starGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            let starMaterial = new THREE.PointsMaterial({
+                color: 0xaaaaaa,
+                size: 0.7,
+            });
+
+            stars = new THREE.Points(starGeo, starMaterial);
+            scene.add(stars);
+
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousemove', onMouseMove, false);
+
+            animate();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+        function onMouseMove(event) {
+             mouseX = event.clientX - window.innerWidth / 2;
+             mouseY = event.clientY - window.innerHeight / 2;
+        }
+
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stars.rotation.z += 0.0005;
+            
+            // Parallax effect
+            camera.position.x += (mouseX * 0.00005 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.00005 - camera.position.y) * 0.05;
+
+            renderer.render(scene, camera);
+        }
+
+        init3D();
+
+        // --- Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate hero elements on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeInLoadElements = document.querySelectorAll('.fade-in-load');
+            fadeInLoadElements.forEach((el) => {
+                const delayValue = getComputedStyle(el).getPropertyValue('--delay') || '0ms';
+                gsap.to(el, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: parseFloat(delayValue) / 1000,
+                });
+            });
+
+            // Animate other elements on scroll
+            const fadeInElements = document.querySelectorAll('.fade-in');
+            fadeInElements.forEach((el) => {
+                gsap.fromTo(el, { opacity: 0, y: 20 }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
